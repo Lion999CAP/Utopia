@@ -20,6 +20,8 @@
               <a class="enlaces" href="index.jsp">Inicio</a>
               <a class="enlaces" href="eventos.jsp">Eventos</a>
               <a class="enlaces" href="revista.jsp">Revista</a>
+          </nav>
+          <nav>
               <a class="enlaces" href="login.jsp"> <img src="img/user.png" class="imagen2" alt="icono de inicio"> </a>
           </nav>
   </header>

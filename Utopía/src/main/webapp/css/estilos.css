@@ -1,8 +1,8 @@
 @charset "UTF-8";
 header{        
-        display: grid;
-		color: rgb(63, 98, 28);
-	    grid-template-columns: auto auto auto;
+		display: flex;
+		align-items: center;
+		color: rgb(255, 255, 255);
 	    min-height: 40px;
 	    justify-content: space-between;
 	    text-align: center;
@@ -13,6 +13,10 @@ header{
 		margin: 0;
         }
 
+header > nav > a,main,footer > a, footer{
+	color: #ffffff;
+}
+
 .imagen1 {
         height: 70px;
         width: 120px;
@@ -20,15 +24,21 @@ header{
         }
         
 .imagen2 {
-        height: 70px;
+        height: 60px;
         width: 70px;
         float: right;
         }
         
- .imagen3 {
+ .imagen3,.imagen5 {
         height: 300px;
         width: 490px;
         float: center;
+        }
+
+.imagen4 {
+        height: 500px;
+        width: 390px;
+        float: left;
         }
      
      
@@ -37,22 +47,25 @@ header{
  }
  
  form {
-		max-width: 300px;
+		max-width: 400px;
 		margin: 0 auto;
-		background-color: #fff;
+		background-color: rgb(255, 128, 0);
 		padding: 20px;
 		border-radius: 5px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 		}
 		
-.cuerpo{
-	gap: 10px;
-    background-color: #00ffff;
-    padding: 10px;
+body{
+    background-color: #15054e;
+    margin: 70px 70px 30px;
 }
 
 main > div{
-	background-color: rgba(255, 255, 255, 0.8);
     text-align: center;
     padding: 20px 0;
+}
+
+.inicio,.proyectos{
+	display: flex;
+  	align-items: center;
 }

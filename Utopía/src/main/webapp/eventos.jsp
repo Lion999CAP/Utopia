@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.revista.negocio.*"%>
+<%@ page import="java.io.OutputStream" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,8 @@
               <a class="enlaces" href="index.jsp">Inicio</a>
               <a class="enlaces" href="revista.jsp">Revista</a>
               <a class="enlaces" href="contactos.jsp">Contáctos</a>
+          </nav>
+          <nav>
               <a class="enlaces" href="login.jsp"> <img src="img/user.png" class="imagen2" alt="icono de inicio"> </a>
           </nav>
   </header>
@@ -27,11 +31,24 @@
   <main>
     <div>
       <div>
-        <!-- img -->
+        <%
+		int imagenId = 1; // ID de la imagen que deseas obtener
+		Funciones funciones = new Funciones();
+		byte[] imageData = funciones.getImageData(imagenId);
+		
+		if (imageData != null) {
+		    response.setContentType("image/jpeg"); // Establece el tipo de contenido de la respuesta como una imagen JPEG
+		    OutputStream outputStream = response.getOutputStream();
+		    outputStream.write(imageData);
+		    outputStream.close();
+		} else {
+		    out.println("No se encontró la imagen en la base de datos o ha ocurrido un error.");
+		}
+		%>
       </div>
       
       <div>
-      <!-- Actividades -->
+      
       </div>
     </div>
     
