@@ -1,7 +1,7 @@
 @charset "UTF-8";
 header{        
-		display: flex;
-		align-items: center;
+		display: grid;
+		grid-template-columns: auto auto auto;
 		color: rgb(255, 255, 255);
 	    min-height: 40px;
 	    justify-content: space-between;
@@ -24,7 +24,7 @@ header > nav > a,main,footer > a, footer{
         }
         
 .imagen2 {
-        height: 60px;
+        height: 70px;
         width: 70px;
         float: right;
         }
@@ -68,4 +68,16 @@ main > div{
 .inicio,.proyectos{
 	display: flex;
   	align-items: center;
+}
+
+/*Bootstrap*/
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+.card-registration .select-arrow {
+top: 13px;
 }

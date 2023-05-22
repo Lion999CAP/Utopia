@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Part;
 
@@ -22,11 +23,17 @@ public class Funciones {
 	private String carrera;
 	private long celular;
 	private Date fecha;
-	private String clave;
 	private byte foto;
 	private byte h_vida;
+	private String clave;
 	private boolean aprobado;
-	
+	private static final String EMAIL_PATTERN = "^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$";
+	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+
+	public static boolean isValidEmail(String email) {
+        return pattern.matcher(email).matches();
+    }
+
 	public long getCedula() {
 		return cedula;
 	}
@@ -177,33 +184,48 @@ public class Funciones {
         return imageData;
     }
 	
-	public boolean guardarDatosFormulario(String cedula, String nombre, String correo, String carrera, String celular, String fechaNacimiento, Part fotoPart, Part hojaVidaPart) {
-	    boolean exito = false;
+	public boolean guardarDatosUser(String cedula, String nombre, String correo, String carrera, String celular, String fecha, String foto) {
 	    Conexion con = new Conexion();
-	    
-	    try (Connection conn = con.getConexion()) {
-	        String sql = "INSERT INTO tabla_datos (cedula, nombre, correo, carrera, celular, fecha_nacimiento, foto, hoja_vida) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-	        PreparedStatement statement = conn.prepareStatement(sql);
-	        statement.setString(1, cedula);
-	        statement.setString(2, nombre);
-	        statement.setString(3, correo);
-	        statement.setString(4, carrera);
-	        statement.setString(5, celular);
-	        statement.setString(6, fechaNacimiento);
-	        statement.setBinaryStream(7, fotoPart.getInputStream());
-	        statement.setBinaryStream(8, hojaVidaPart.getInputStream());
-	        
-	        int rowsAffected = statement.executeUpdate();
-	        
-	        if (rowsAffected > 0) {
-	            exito = true;
-	        }
-	    } catch (SQLException | IOException e) {
+	    PreparedStatement pr = null;
+	    String clave = "123456";
+	    String sql = "INSERT INTO public.tb_usuario(ci_us, nombre_us, correo_us, carrera_us, celular_us, fecha_us,clave_us ,foto_us)	VALUES (?, ?, ?, ?, ?, ?, ?,?);";
+	    try {
+	        pr = con.getConexion().prepareStatement(sql);
+	        pr.setString(1, cedula);
+	        pr.setString(2, nombre);
+	        pr.setString(3, correo);
+	        pr.setString(4, carrera);
+	        pr.setString(5, celular);
+	        pr.setString(6, fecha);
+	        pr.setString(7, clave);
+	        pr.setString(8, foto);
+	        int filasAfectadas = pr.executeUpdate();
+	        return filasAfectadas > 0; // Retorna true si se insertaron filas, false si no se insertaron filas.
+	    } catch (SQLException e) {
 	        e.printStackTrace();
+	        System.out.print(e.getMessage());
+	        return false; // Retorna false en caso de excepción o error.
 	    }
-	    
-	    return exito;
 	}
+	
+	public boolean guardarDatosPost(String cedula, String h_vida) {
+		Conexion con = new Conexion();
+		PreparedStatement pr=null;
+		boolean pos=false;
+		String sql = "INSERT INTO public.tb_postulante(ci_us, aprobado, h_vida) VALUES (?, ?, ?);";
+        try{
+            pr=con.getConexion().prepareStatement(sql);
+            pr.setString(1, cedula);
+            pr.setBoolean(2, pos);
+            pr.setString(3, h_vida);
+            int filasAfectadas = pr.executeUpdate();
+	        return filasAfectadas > 0; // Retorna true si se insertaron filas, false si no se insertaron filas.
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.print(e.getMessage());
+            return false; // Retorna false en caso de excepción o error.
+        }
+    }
 	
 	public boolean aceptarPostulacion(int estudianteId, boolean aceptado) {
 	    boolean exito = false;
@@ -226,7 +248,6 @@ public class Funciones {
 	    
 	    return exito;
 	}
-	
 	
 	
 	public Funciones() {
