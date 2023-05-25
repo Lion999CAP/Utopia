@@ -23,8 +23,8 @@ public class Funciones {
 	private String carrera;
 	private long celular;
 	private Date fecha;
-	private byte foto;
-	private byte h_vida;
+	private String foto;
+	private String h_vida;
 	private String clave;
 	private boolean aprobado;
 	private static final String EMAIL_PATTERN = "^\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$";
@@ -89,20 +89,20 @@ public class Funciones {
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
-
-	public byte getFoto() {
+	
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
-	public byte getH_vida() {
+	public String getH_vida() {
 		return h_vida;
 	}
 
-	public void setH_vida(byte h_vida) {
+	public void setH_vida(String h_vida) {
 		this.h_vida = h_vida;
 	}
 
@@ -152,6 +152,26 @@ public class Funciones {
             	}
          return result;
     }
+	
+	public boolean verificarExistencia(String ci, String correo) {
+		boolean f=false;
+		String sentencia= "Select ci_us,correo_us from tb_usuario";
+		ResultSet rs;
+		Conexion clsCon=new Conexion();
+		rs=clsCon.Consulta(sentencia);
+		try{
+			while(rs.next()){
+				if(ci.equals(rs.getString(1)) || correo.equals(rs.getString(3))) {
+					f=true;
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			System.out.println( ex.getMessage());
+		}
+		return f;
+	}
 	
 	public byte[] getImageData(int imagenId) throws IOException {
         Conexion con = new Conexion();
@@ -227,6 +247,27 @@ public class Funciones {
         }
     }
 	
+	public boolean guardarDatosRol(String cedula) {
+		Conexion con = new Conexion();
+		PreparedStatement pr=null;
+		String sql = "INSERT INTO public.tb_rol("
+				+ "	ci_us, rol_us, pagina_us, descripcion)"
+				+ "	VALUES (?, ?, ?, ?);";
+        try{
+            pr=con.getConexion().prepareStatement(sql);
+            pr.setString(1, cedula);
+            pr.setString(2, "Editor");
+            pr.setString(3, "integrantes.jsp");
+            pr.setString(4, "Integrantes");
+            int filasAfectadas = pr.executeUpdate();
+	        return filasAfectadas > 0; // Retorna true si se insertaron filas, false si no se insertaron filas.
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.print(e.getMessage());
+            return false; // Retorna false en caso de excepción o error.
+        }
+    }
+	
 	public boolean aceptarPostulacion(int estudianteId, boolean aceptado) {
 	    boolean exito = false;
 	    Conexion con = new Conexion();
@@ -248,7 +289,6 @@ public class Funciones {
 	    
 	    return exito;
 	}
-	
 	
 	public Funciones() {
 		

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.revista.seguridad.*"%>
+    pageEncoding="UTF-8" import="com.revista.negocio.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,16 @@
 
 <title>Utopía</title>
 </head>
+<script type="text/javascript">
+	function confirmacion(){
+	  var respuesta = confirm("Desea eliminar el evento?");
+	  if (respuesta == true){
+		  return true;
+	  }else{
+		  return false;
+	  }
+	}
+</script>
 <body>
 
   <header id="header">
@@ -32,14 +42,14 @@
 		  	  </details>
           </nav>
   </header>
-
-<main>
-
-<%-- Obtener el valor del parámetro "error" --%>
-		    <% String errorMessage = request.getParameter("mensaje"); %>
+  
+  <main>
+  
+  <% String errorMessage = request.getParameter("mensaje"); %>
 		    <% if (errorMessage != null) { %>
 		        <p style="color: red;"><%= errorMessage %></p>
-		    <% } %> 
+		    <% } %>
+		    
 	<%
 	String usuario, perfil;
 	HttpSession sesion = request.getSession();
@@ -51,17 +61,20 @@
 		perfil = (String) sesion.getAttribute("perfil");
 	}
 	%>
-		    
-<h1>Área de postulaciones entrantes</h1>
+	
+    <h1>Eventos</h1>
+    <h2>Añadir evento</h2>
+	<a href="nuevoEvento.jsp"><button type="button" class="btn btn-secondary">Nuevo Evento</button></a>
+    <h2>Eventos actuales:</h2>
+    
+	  <%
+	    Eventos mp = new Eventos();
+	    out.print(mp.consultarTodo());
+	  %>
+    
+  </main>
 
-  <%
-  Postulaciones ps= new Postulaciones();
-  out.print(ps.consultarTodo());
-  %>
-  
-</main>
-
-<footer>
+  <footer>
     <p>&copy; 2023 Leandro Lara</p> <a href="desarrollador.jsp"> Contáctame</a>
   </footer>
 

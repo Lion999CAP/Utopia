@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/estilos.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
 <title>Utopía</title>
 </head>
 <body>
@@ -31,7 +33,7 @@
 
     <div class="inicio">
       <div>
-        <img src="img/utopia1.png" class="imagen3" alt="nosotros">
+        <img src="img/utopia1.png" class="imagen3" alt="MIsión y visión">
       </div>
       <div>
         <h2>Misión</h2>
@@ -41,7 +43,6 @@
       </div>
     </div>
 
-    
     <div class="proyectos">
       <div>
         <h2>Proyectos</h2>
@@ -50,7 +51,7 @@
         <p>Y es, precisamente, ese el tema central que nos convoca la revista Utopía en esta edición 115, para consumir y producir nuevos conocimientos.</p>
       </div>
       <div>
-        <img src="img/utopia2.jpeg" class="imagen4" alt="nosotros">
+        <img src="img/utopia2.jpeg" class="imagen4" alt="nuestros proyectos">
       </div>
     </div>
 

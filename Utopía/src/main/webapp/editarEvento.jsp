@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.revista.seguridad.*"%>
+    pageEncoding="UTF-8" import="com.revista.negocio.*"%>
 <!DOCTYPE html>
+
+	<%
+  	String cod= request.getParameter("cod");
+  	Eventos mp= new Eventos();
+  	mp.ConsulEditarEvento(cod);
+  	HttpSession sesion = request.getSession();
+	sesion.setAttribute("id_act", cod);
+  	%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -33,35 +42,30 @@
           </nav>
   </header>
 
-<main>
-
-<%-- Obtener el valor del parámetro "error" --%>
-		    <% String errorMessage = request.getParameter("mensaje"); %>
-		    <% if (errorMessage != null) { %>
-		        <p style="color: red;"><%= errorMessage %></p>
-		    <% } %> 
-	<%
-	String usuario, perfil;
-	HttpSession sesion = request.getSession();
-	if (sesion.getAttribute("usuario") == null) {
-		// Redireccionar a login.jsp si no se ha iniciado sesión
-		response.sendRedirect("login.jsp?error=Debe registrarse en el sistema.");
-	} else {
-		usuario = (String) sesion.getAttribute("usuario");
-		perfil = (String) sesion.getAttribute("perfil");
-	}
-	%>
-		    
-<h1>Área de postulaciones entrantes</h1>
-
-  <%
-  Postulaciones ps= new Postulaciones();
-  out.print(ps.consultarTodo());
-  %>
+  <main>
+    <form class="form-inline" action="administrarEventos.jsp">
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="id" class="sr-only">ID</label>
+	    <input type="number" class="form-control" id="id" name="id" placeholder="ID" readonly>
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="titulo" class="sr-only">Título</label>
+	    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="fecha" class="sr-only">Fecha</label>
+	    <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="imageFile" class="sr-only">Imagen</label>
+	    <input type="file" class="form-control" id="imageFile" name="imageFile">
+	  </div>
+	  	<input type="submit" class="btn btn-primary" value="Actualizar"/> 
+		<input type="reset" class="btn btn-primary" value="Cancelar"/>
+    </form>
+  </main>
   
-</main>
-
-<footer>
+  <footer>
     <p>&copy; 2023 Leandro Lara</p> <a href="desarrollador.jsp"> Contáctame</a>
   </footer>
 

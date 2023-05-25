@@ -19,7 +19,7 @@
 			<jsp:forward page="aceptarPostulaciones.jsp">
 			<jsp:param name="mensaje" value="Error.<br>Vuelva a intentarlo."/>
 			</jsp:forward>
-			<%
+		<%
 	 }
 %>
 

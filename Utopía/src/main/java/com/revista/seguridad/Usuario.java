@@ -11,7 +11,7 @@ public class Usuario {
 	private String clave;
 	private String newclave;
 	private boolean aprobado;
-	private int perfil;
+	private String perfil;
 	
 	public String getNombre() {
 		return nombre;
@@ -53,20 +53,11 @@ public class Usuario {
 	}
 
 
-	public int getPerfil() {
-		return perfil;
-	}
-
-
-	public void setPerfil(int perfil) {
-		this.perfil = perfil;
-	}
-
 	public boolean verificarUsuario(String nlogin, String nclave)
 	{
 	boolean respuesta=false;
 	String sentencia= "Select * from tb_usuario where correo_us='"+nlogin+"' and clave_us='"+nclave+"';";
-//System.out.print(sentencia);
+	//System.out.print(sentencia);
 	try
 	{
 		ResultSet rs;
@@ -77,7 +68,7 @@ public class Usuario {
 		respuesta=true;
 		this.setLogin(nlogin);
 		this.setClave(nclave);
-		this.setPerfil(rs.getInt(2));
+		this.setPerfil(rs.getString(3));
 		this.setNombre(rs.getString(2));
 		}
 		else
@@ -143,23 +134,31 @@ public class Usuario {
 	    return respuesta;
 	}
 	
+	public boolean isAprobado() {
+		return aprobado;
+	}
+
+	public void setAprobado(boolean aprobado) {
+		this.aprobado = aprobado;
+	}
+
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+	
 	public Usuario() {
 		this.clave="";
 		this.newclave="";
 		this.login="";
 		this.nombre="";
-		this.perfil=0;
-		this.setAprobado(false);
-	}
-
-
-	public boolean isAprobado() {
-		return aprobado;
-	}
-
-
-	public void setAprobado(boolean aprobado) {
-		this.aprobado = aprobado;
+		this.perfil="";
+		this.aprobado=false;
 	}
 
 }

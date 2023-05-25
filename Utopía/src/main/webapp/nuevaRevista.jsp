@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.revista.seguridad.*"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,34 +34,28 @@
   </header>
 
 <main>
-
-<%-- Obtener el valor del parámetro "error" --%>
-		    <% String errorMessage = request.getParameter("mensaje"); %>
-		    <% if (errorMessage != null) { %>
-		        <p style="color: red;"><%= errorMessage %></p>
-		    <% } %> 
-	<%
-	String usuario, perfil;
-	HttpSession sesion = request.getSession();
-	if (sesion.getAttribute("usuario") == null) {
-		// Redireccionar a login.jsp si no se ha iniciado sesión
-		response.sendRedirect("login.jsp?error=Debe registrarse en el sistema.");
-	} else {
-		usuario = (String) sesion.getAttribute("usuario");
-		perfil = (String) sesion.getAttribute("perfil");
-	}
-	%>
-		    
-<h1>Área de postulaciones entrantes</h1>
-
-  <%
-  Postulaciones ps= new Postulaciones();
-  out.print(ps.consultarTodo());
-  %>
-  
+  <form class="form-inline" action="newRevista.jsp">
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="id" class="sr-only">Revsita N.-:</label>
+	    <input type="number" class="form-control" id="id" name="id" placeholder="ID">
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="titulo" class="sr-only">Introducción:</label>
+	    <input type="message" class="form-control" id="introduccion" name="introduccion" placeholder="Título">
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="fecha" class="sr-only">Tematica:</label>
+	    <input type="text" class="form-control" id="tema" name="tema" placeholder="Fecha">
+	  </div>
+	  <div class="form-group mx-sm-3 mb-2">
+	    <label for="imageFile" class="sr-only">Imagen:</label>
+	    <input type="file" class="form-control" id="imageFile" name="imageFile" placeholder="imageFile" accept=".jpg, .jpeg, .png">
+	  </div>
+	  <input type="submit" class="btn btn-primary" value="Ingresar">
+  </form>
 </main>
 
-<footer>
+  <footer>
     <p>&copy; 2023 Leandro Lara</p> <a href="desarrollador.jsp"> Contáctame</a>
   </footer>
 

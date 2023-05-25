@@ -13,7 +13,7 @@ Usuario usuario=new Usuario();
 String nlogin=request.getParameter("usuario");
 String nclave=request.getParameter("clave");
 HttpSession sesion=request.getSession(); //Se crea la variable de sesión
-boolean respuesta=usuario.verificarUsuario(nlogin,nclave);
+boolean respuesta = usuario.verificarUsuario(nlogin,nclave);
 boolean respuesta2 = usuario.verificarAprobado(nlogin);
 if (respuesta){
 	if(respuesta2){

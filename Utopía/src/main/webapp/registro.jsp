@@ -32,25 +32,6 @@
 		        <p style="color: red;"><%= errorMessage %></p>
 		    <% } %>
   	
-  <!-- <form action="respuesta.jsp" method="post" class="resgistro_form"> 
-			<table border="0">
-				<tr><td>Cedula: </td> <td> <input type="text" id="input" name="txtCedula" maxlenght="10" required placeholder="Cedula"/> </td></tr>
-				<tr><td>Nombre: </td><td> <input type="text" name="txtNombre" required placeholder="Nombre de usuario"/></td></tr>
-				<tr><td>Correo: </td> <td> <input type="text" id="input" name="txtCorreo" required/> </td></tr>
-				<tr><td>Carrera: </td> <td> <input type="text" id="input" name="txtCarrera" maxlenght="30" required/> </td></tr>
-				<tr><td>Celular: </td> <td> <input type="text" id="input" name="txtCelular" maxlenght="10" required/> </td></tr>
-				<tr><td>Mes y año de nacimiento: </td><td><input type="date" name="fecha" id="fecha" required/> </td></tr>
-				<tr><td>Foto: </td><td><input type="file" name="fileFoto" accept=".jpg, .jpeg, .png" /> </td></tr>
-				<tr><td>Hoja de vida: </td><td><input type="file" name="fileHojaVida" accept=".pdf" size="5000000"/> </td></tr>
-				En size se coloca el tamaño de bytes 1MB = 1 * 1024 * 1024 bytes
-				<tr>
-				  <td><input type="submit" /> </td>
-				  <td> <input type="reset" /></td>
-				</tr>
-			</table>
-			<a href="index.jsp"> Regresar </a>
-	</form> -->
-	
 	<section class="h-100 bg-dark">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -102,8 +83,8 @@
                 </div>
                 
                 <div class="d-flex justify-content-end pt-3">
-                	<input type="submit" /> 
-					<input type="reset" />
+                	<input type="submit" class="btn btn-primary" value="Ingresar"/> 
+					<input type="reset" class="btn btn-primary" value="Cancelar"/>
 				</div>
 			</form>
 

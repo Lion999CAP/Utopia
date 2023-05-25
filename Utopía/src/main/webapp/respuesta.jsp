@@ -17,8 +17,6 @@
     Funciones mp = new Funciones();
     // Validar el correo electrónico utilizando la expresión regular
 
-
-
         // Procesar el formulario y guardar los datos del usuario
 		String cedula = request.getParameter("txtCedula");
 		String nombre = request.getParameter("txtNombre");
@@ -30,19 +28,28 @@
 		String hojaVida= request.getParameter("fileHojaVida");
 		Funciones funciones = new Funciones();
 		boolean exito = funciones.guardarDatosUser(cedula, nombre, correo, carrera, celular, fechaParametro, foto);
-			
 		boolean exito2 = funciones.guardarDatosPost(cedula, hojaVida);
+		boolean exito3 = funciones.guardarDatosRol(cedula);
 		
-		if (exito) {
+		boolean existe = funciones.verificarExistencia(cedula, correo);
+		if(!existe){
+			if (exito) {
+				%>
+				<jsp:forward page="login.jsp">
+				<jsp:param name="mensaje" value="Ingreso exitoso.<br>Su usuario es: SU CORREO y contraseña: 123456."/>
+				</jsp:forward>
+				<%
+			} else {
+				%>
+				<jsp:forward page="registro.jsp">
+				<jsp:param name="mensaje" value="Datos incorrectos.<br>Vuelva a intentarlo."/>
+				</jsp:forward>
+				<%
+			}
+		}else{
 			%>
-			<jsp:forward page="login.jsp">
-			<jsp:param name="mensaje" value="Ingreso exitoso.<br>Su usuario es: <%= funciones.getCorreo() %> y contraseña: 123456."/>
-			</jsp:forward>
-			<%
-		} else {
-			%>
-			<jsp:forward page="registro.jsp">
-			<jsp:param name="mensaje" value="Datos incorrectos.<br>Vuelva a intentarlo."/>
+			<jsp:forward page="registro.jsp" >
+			<jsp:param name="mensaje" value= "El usuario o correo ya existe, ingrese datos diferentes" />
 			</jsp:forward>
 			<%
 		}

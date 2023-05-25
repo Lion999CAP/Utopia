@@ -11,10 +11,16 @@
 <%
      String cod = request.getParameter("cod");
      Postulaciones sp = new Postulaciones();
-     boolean f = sp.aceptarPostulacion(cod);
-	 if(f==true){
-		response.sendRedirect("menu.jsp");
-	 }
+     boolean f = sp.rechazarPostulacion(cod);
+     if(f==true){
+ 		response.sendRedirect("menu.jsp");
+ 	 }else{
+ 		 %>
+ 			<jsp:forward page="aceptarPostulaciones.jsp">
+ 			<jsp:param name="mensaje" value="Error.<br>Vuelva a intentarlo."/>
+ 			</jsp:forward>
+ 		<%
+ 	 }
 %>
 
 </body>

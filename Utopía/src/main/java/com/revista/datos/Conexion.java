@@ -96,7 +96,6 @@ public class Conexion {
 	St=getConexion().createStatement();
 	reg=St.executeQuery(sql);
 	
-
 	}
 	catch(Exception ee)
 	{
