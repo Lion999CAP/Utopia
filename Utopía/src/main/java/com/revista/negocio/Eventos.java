@@ -154,21 +154,15 @@ public class Eventos {
 		}
 	}
 	
-	public boolean eventoActualizar(Eventos mp) {
-		PreparedStatement pr = null;
+	public boolean eventoActualizar(String id, String titulo, String fecha, String foto) {
 		Conexion con=new Conexion();
-		String sql = "UPDATE tb_actividades SET act_titulo=?, act_fecha=?, act_foto=?	WHERE id_pr=" + mp.getId_act() + ";";
+		String sql = "UPDATE tb_actividades SET act_titulo='" + titulo + "', act_fecha='"+ fecha +"', act_foto='"+foto+"' WHERE id_act='" + id + "';";
 		System.out.print(sql);
 		try {
-			pr = con.getConexion().prepareStatement(sql);
-			pr.setString(2, mp.getAct_titulo());
-			pr.setString(3, mp.getAct_fecha());
-			pr.setString(4, mp.getAct_foto());
-			int filasAfectadas = pr.executeUpdate();
-	        return filasAfectadas > 0; // Retorna true si se insertaron filas, false si no se insertaron filas.
+			con.Ejecutar(sql);
+	        return true; // Retorna true si se insertaron filas, false si no se insertaron filas.
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
-			System.out.print(sql);
 	        return false; // Retorna false en caso de excepción o error.
 		}
 	}

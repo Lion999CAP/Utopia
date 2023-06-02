@@ -41,11 +41,11 @@
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="titulo" class="sr-only">Introducción:</label>
-	    <input type="message" class="form-control" id="introduccion" name="introduccion" placeholder="Título">
+	    <input type="message" class="form-control" id="introduccion" name="introduccion" placeholder="Introducción">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="fecha" class="sr-only">Tematica:</label>
-	    <input type="text" class="form-control" id="tema" name="tema" placeholder="Fecha">
+	    <input type="text" class="form-control" id="tema" name="tema" placeholder="Tematica">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="imageFile" class="sr-only">Imagen:</label>

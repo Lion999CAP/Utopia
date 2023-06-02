@@ -43,22 +43,22 @@
   </header>
 
   <main>
-    <form class="form-inline" action="administrarEventos.jsp">
+    <form class="form-inline" action="mod_act.jsp">
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="id" class="sr-only">ID</label>
-	    <input type="number" class="form-control" id="id" name="id" placeholder="ID" readonly>
+	    <input type="number" class="form-control" id="id" name="id" placeholder="ID" value="<%= mp.getId_act() %>" readonly>
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="titulo" class="sr-only">Título</label>
-	    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+	    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" value="<%= mp.getAct_titulo() %>">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
 	    <label for="fecha" class="sr-only">Fecha</label>
-	    <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha">
+	    <input type="date" class="form-control" id="fecha" name="fecha" placeholder="Fecha" value="<%= mp.getAct_fecha() %>">
 	  </div>
 	  <div class="form-group mx-sm-3 mb-2">
-	    <label for="imageFile" class="sr-only">Imagen</label>
-	    <input type="file" class="form-control" id="imageFile" name="imageFile">
+	    <label for="fecha" class="sr-only">Foto</label>
+	    <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto" value="<%= mp.getAct_foto() %>">
 	  </div>
 	  	<input type="submit" class="btn btn-primary" value="Actualizar"/> 
 		<input type="reset" class="btn btn-primary" value="Cancelar"/>
